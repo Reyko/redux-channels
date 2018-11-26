@@ -61,7 +61,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   action: bindActionCreators(action, dispatch)
 });
-const mapSocketToProps = ({ socket, state }) => ({
+const mapSocketToProps = (socket, state) => ({
   someChannel: socket.channel('some', { username: state.auth })
 });
 export default connect({
