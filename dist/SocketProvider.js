@@ -10,6 +10,8 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
 var _reactRedux = require('react-redux');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -20,23 +22,19 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Component = _react2.default.Component;
-var PropTypes = _react2.default.PropTypes;
-
-
-var storeShape = PropTypes.shape({
-  subscribe: PropTypes.func.isRequired,
-  dispatch: PropTypes.func.isRequired,
-  getState: PropTypes.func.isRequired
+var storeShape = _propTypes.PropTypes.shape({
+  subscribe: _propTypes.PropTypes.func.isRequired,
+  dispatch: _propTypes.PropTypes.func.isRequired,
+  getState: _propTypes.PropTypes.func.isRequired
 });
 
-var SocketProvider = function (_Component) {
-  _inherits(SocketProvider, _Component);
+var SocketProvider = function (_React$Component) {
+  _inherits(SocketProvider, _React$Component);
 
   function SocketProvider(props, context) {
     _classCallCheck(this, SocketProvider);
 
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(SocketProvider).call(this, props, context));
+    var _this = _possibleConstructorReturn(this, (SocketProvider.__proto__ || Object.getPrototypeOf(SocketProvider)).call(this, props, context));
 
     _this.store = props.store;
     _this.socket = props.socket;
@@ -65,18 +63,18 @@ var SocketProvider = function (_Component) {
   }]);
 
   return SocketProvider;
-}(Component);
+}(_react2.default.Component);
 
 exports.default = SocketProvider;
 
 
 SocketProvider.propTypes = {
   store: storeShape,
-  socket: PropTypes.object,
-  children: PropTypes.element
+  socket: _propTypes.PropTypes.object,
+  children: _propTypes.PropTypes.element
 };
 
 SocketProvider.childContextTypes = {
   store: storeShape,
-  socket: PropTypes.object
+  socket: _propTypes.PropTypes.object
 };

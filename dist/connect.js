@@ -48,7 +48,7 @@ function getDisplayName(WrappedComponent) {
 var nextVersion = 0;
 
 function connect() {
-  var opts = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+  var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var mapSocketToProps = opts.mapSocketToProps;
 
 
@@ -66,7 +66,7 @@ function connect() {
       function ChannelConnect(props, context) {
         _classCallCheck(this, ChannelConnect);
 
-        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ChannelConnect).call(this, props, context));
+        var _this = _possibleConstructorReturn(this, (ChannelConnect.__proto__ || Object.getPrototypeOf(ChannelConnect)).call(this, props, context));
 
         _this.version = version;
         _this.store = props.store || context.store;
@@ -108,8 +108,8 @@ function connect() {
       }, {
         key: 'connectToAllChannels',
         value: function connectToAllChannels(props) {
-          var socket = this.socket;
-          var store = this.store;
+          var socket = this.socket,
+              store = this.store;
 
 
           var channelHandles = mapSocketToProps({
@@ -144,17 +144,17 @@ function connect() {
               if (this.channelHandles[key].hasOwnProperty('leave')) {
                 this.channelHandles[key].leave(); // socket.io and Phoenix
               } else if (this.channelHandles[key].hasOwnProperty('unsubscribe')) {
-                  this.channelHandles[key].unsubscribe(); // Rails ActionCable
-                }
+                this.channelHandles[key].unsubscribe(); // Rails ActionCable
+              }
             }
           }
         }
       }, {
         key: 'render',
         value: function render() {
-          var haveOwnPropsChanged = this.haveOwnPropsChanged;
-          var renderedElement = this.renderedElement;
-          var props = this.props;
+          var haveOwnPropsChanged = this.haveOwnPropsChanged,
+              renderedElement = this.renderedElement,
+              props = this.props;
 
 
           this.haveOwnPropsChanged = false;
@@ -187,10 +187,10 @@ function connect() {
     };
 
     // apply react-redux args from original args
-    var mapStateToProps = opts.mapStateToProps;
-    var mapDispatchToProps = opts.mapDispatchToProps;
-    var mergeProps = opts.mergeProps;
-    var options = opts.options;
+    var mapStateToProps = opts.mapStateToProps,
+        mapDispatchToProps = opts.mapDispatchToProps,
+        mergeProps = opts.mergeProps,
+        options = opts.options;
 
     return (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps, mergeProps, options)(ChannelConnect);
   };

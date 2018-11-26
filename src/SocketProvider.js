@@ -1,6 +1,6 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import { Provider } from 'react-redux';
-const { Component, PropTypes } = React;
 
 const storeShape = PropTypes.shape({
   subscribe: PropTypes.func.isRequired,
@@ -8,7 +8,7 @@ const storeShape = PropTypes.shape({
   getState: PropTypes.func.isRequired
 });
 
-export default class SocketProvider extends Component {
+export default class SocketProvider extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.store = props.store;
